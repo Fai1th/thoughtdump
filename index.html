@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ThoughtDump — get it out of your head</title>
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="noise"></div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <img src="logo.svg" class="product-logo" alt="ThoughtDump">
+        <span class="product-name">ThoughtDump</span>
+      </div>
+      <div class="nav-links">
+        <span class="nav-tag">a Pillar product</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- DUMP PAGE -->
+  <div id="page-dump">
+    <section class="dump-hero">
+      <div class="dump-header">
+        <h1>get it<br>out of<br>your head.</h1>
+        <p class="dump-sub">type everything. we'll sort it out.</p>
+      </div>
+
+      <div class="dump-area-wrap">
+        <textarea
+          id="dump-input"
+          class="dump-textarea"
+          placeholder="just start typing. dump everything. we'll sort it out.&#10;&#10;work stuff, feelings, random ideas, people you're thinking about, things you need to do, questions spinning in your head — all of it."
+          autofocus
+        ></textarea>
+        <div class="dump-meta">
+          <span id="word-count" class="word-count">0 words</span>
+          <button class="process-btn" onclick="processDump()">process it →</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- RESULT PAGE -->
+  <div id="page-result" style="display:none">
+    <div class="result-nav">
+      <button class="back-btn" onclick="goBack()">← dump again</button>
+      <div class="result-nav-logo">
+        <img src="logo.svg" class="product-logo" alt="">
+        <span>ThoughtDump</span>
+      </div>
+    </div>
+
+    <div class="result-wrap">
+      <div class="result-header">
+        <div class="result-headline">here's what's on your mind.</div>
+        <div id="result-summary" class="result-summary"></div>
+      </div>
+      <div id="cards-grid" class="cards-grid"></div>
+    </div>
+  </div>
+
+  <script src="pro.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
