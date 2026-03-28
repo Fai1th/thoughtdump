@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ThoughtDump — get it out of your head</title>
+  <meta name="description" content="Brain dump everything. It sorts itself into themes, flags your tasks, and gets out of your way.">
   <link rel="icon" type="image/svg+xml" href="logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,30 +20,43 @@
         <img src="logo.svg" class="product-logo" alt="ThoughtDump">
         <span class="product-name">ThoughtDump</span>
       </div>
-      <div class="nav-links">
-        <span class="nav-tag">a Pillar product</span>
+      <div class="nav-actions">
+        <button class="nav-history-btn" onclick="toggleHistory()">Recent</button>
+        <a href="https://pillar-home.vercel.app" class="nav-pillar" target="_blank">a Pillar product</a>
       </div>
     </div>
   </nav>
+
+  <!-- HISTORY PANEL -->
+  <div id="history-panel" class="history-panel" style="display:none">
+    <div class="history-header">
+      <span>Recent Dumps</span>
+      <button class="history-close" onclick="toggleHistory(false)">✕</button>
+    </div>
+    <div id="history-list" class="history-list"></div>
+  </div>
 
   <!-- DUMP PAGE -->
   <div id="page-dump">
     <section class="dump-hero">
       <div class="dump-header">
         <h1>get it<br>out of<br>your head.</h1>
-        <p class="dump-sub">type everything. we'll sort it out.</p>
+        <p class="dump-sub">type everything — we'll sort it, flag your tasks, and get out of your way.</p>
       </div>
 
       <div class="dump-area-wrap">
         <textarea
           id="dump-input"
           class="dump-textarea"
-          placeholder="just start typing. dump everything. we'll sort it out.&#10;&#10;work stuff, feelings, random ideas, people you're thinking about, things you need to do, questions spinning in your head — all of it."
+          placeholder="Just start typing. Dump everything.&#10;&#10;Work stuff, feelings, random ideas, people you're thinking about, things you need to do, questions spinning in your head — all of it. Separate thoughts with new lines or periods."
           autofocus
         ></textarea>
         <div class="dump-meta">
           <span id="word-count" class="word-count">0 words</span>
-          <button class="process-btn" onclick="processDump()">process it →</button>
+          <div class="dump-meta-right">
+            <span class="dump-hint">⌘↵ to process</span>
+            <button class="process-btn" onclick="processDump()">Sort it out →</button>
+          </div>
         </div>
       </div>
     </section>
@@ -51,18 +65,25 @@
   <!-- RESULT PAGE -->
   <div id="page-result" style="display:none">
     <div class="result-nav">
-      <button class="back-btn" onclick="goBack()">← dump again</button>
-      <div class="result-nav-logo">
-        <img src="logo.svg" class="product-logo" alt="">
-        <span>ThoughtDump</span>
+      <button class="back-btn" onclick="goBack()">← New dump</button>
+      <div class="result-actions">
+        <button class="action-btn" id="copy-btn" onclick="copyDump()">Copy</button>
+        <button class="action-btn" onclick="exportDump()">Export .txt</button>
       </div>
     </div>
 
     <div class="result-wrap">
       <div class="result-header">
-        <div class="result-headline">here's what's on your mind.</div>
+        <div class="result-headline">Here's what's on your mind.</div>
         <div id="result-summary" class="result-summary"></div>
       </div>
+
+      <!-- Heavy mood banner -->
+      <div id="heavy-banner" class="heavy-banner" style="display:none">
+        <span class="heavy-icon">💙</span>
+        <span>Sounds like a heavy day. That's okay. You got it out — that's the first step.</span>
+      </div>
+
       <div id="cards-grid" class="cards-grid"></div>
     </div>
   </div>
